@@ -34,7 +34,8 @@ clinput.CLInput = class {
                 <div id="' + this.id + '--options"></div>';
 
         let input = document.getElementById(this.id);
-        input.addEventListener("focus", () => {this.activateInput()})
+        input.addEventListener("focus", () => {this.activateInput()});
+        input.addEventListener("blur", () => {this.recordSearchValue()});
         // input.addEventListener("blur", () => {this.unsetTimer()})
         input.addEventListener("keydown", (e) => {
             let entries = document.getElementsByClassName("clinput__option_"+this.id);
@@ -56,9 +57,16 @@ clinput.CLInput = class {
         }
     }
 
+    recordSearchValue() {
+        let input = document.getElementById(this.id);
+        this.lastSearchValue = input.value;
+        this.selectedObject = false;
+    }
+
     activateInput() {
         let input = document.getElementById(this.id);
         input.value = this.lastSearchValue;
+        this.value = "";
 
         if (this.selectedObject) {
             let lsv = this.lastSearchValue.toLowerCase();
@@ -110,6 +118,9 @@ clinput.CLInput = class {
 
     lookupOptions() {
         let input = document.getElementById(this.id);
+        if (document.activeElement !== input) {
+            return;
+        }
         if (this.value !== input.value && input.value.length > 0) {
             this.value = input.value;
             this.options_method(this.value, (data) => {this.optionsReceived(data)});
@@ -125,7 +136,7 @@ clinput.CLInput = class {
         } else {
             this.options = data.slice(0, this.optionsLimit);
         }
-        if (this.newValueMethod) {
+        if (this.newValueMethod && this.options.length === 0) {
             let nv = this.newValueMethod(this.value);
             if (nv) {
                 this.options = [nv].concat(this.options);
@@ -199,6 +210,10 @@ clinput.CLInput = class {
                         } else if (code === "Enter") {
                             this.selecting = true;
                             this.chooseOption(e,idx);
+                        } else if (code === "Tab") {
+                            this.selecting = true;
+                            this.chooseOption(e,idx);
+                            e.preventDefault();
                         }
                     }
                 };
