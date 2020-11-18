@@ -1,4 +1,4 @@
-let clinput = {};
+let clinput = module.exports = {};
 
 clinput.CLInput = class {
     constructor(params) {
