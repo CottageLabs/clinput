@@ -231,6 +231,8 @@ clinput.CLInput = class {
         input.value = this.selectedTemplate(this.options[idx]);
         this.selectedObject = this.options[idx];
         this.onChoice(e,this.options[idx]);
+        this.unsetTimer();
+
     }
 
     setFocusToOption(elements, i){
