@@ -35,7 +35,10 @@ clinput.CLInput = class {
 
         let input = document.getElementById(this.id);
         input.addEventListener("focus", () => {this.activateInput()});
-        input.addEventListener("blur", () => {this.recordSearchValue()});
+        input.addEventListener("blur", () => {
+            this.recordSearchValue();
+            this.unsetTimer();
+        });
         // input.addEventListener("blur", () => {this.unsetTimer()})
         input.addEventListener("keydown", (e) => {
             let entries = document.getElementsByClassName("clinput__option_"+this.id);
