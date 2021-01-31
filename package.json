@@ -1,0 +1,25 @@
+{
+  "name": "@cottagelabs/clinput",
+  "version": "1.0.0",
+  "description": "Select input with autosuggestion",
+  "main": "clinput.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CottageLabs/clinput.git"
+  },
+  "keywords": [
+    "select",
+    "input",
+    "autosuggestion",
+    "cottagelabs"
+  ],
+  "author": "Cottage Labs",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CottageLabs/clinput/issues"
+  },
+  "homepage": "https://github.com/CottageLabs/clinput#readme"
+}
