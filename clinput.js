@@ -30,7 +30,7 @@ clinput.CLInput = class {
         let attrsFrag = attrs.join(" ");
 
         this.element.innerHTML = '<label for="' + this.id + '">' + label + '</label> \
-                <input type="text" id="' + this.id + '" name="' + this.id + '" which="' + this.id + '" ' + attrsFrag + '>\
+                <input autocomplete="off" type="text" id="' + this.id + '" name="' + this.id + '" which="' + this.id + '" ' + attrsFrag + '>\
                 <div id="' + this.id + '--options"></div>';
 
         let input = document.getElementById(this.id);
