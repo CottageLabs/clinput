@@ -124,12 +124,20 @@ clinput.CLInput = class {
         if (document.activeElement !== input) {
             return;
         }
-        if (this.value !== input.value && input.value.length > 0) {
-            this.value = input.value;
-            this.options_method(this.value, (data) => {this.optionsReceived(data)});
-        } else if (input.value.length === 0) {
+
+        if (input.value.length === 0) {
+            // Clear if empty string
             let optsContainer = document.getElementById(this.id + "--options");
             optsContainer.innerHTML = "";
+        }
+        else if (this.value === input.value) {
+            // Re-render if same value
+            this._renderOptions();
+        }
+        else {
+            // Update options
+            this.value = input.value;
+            this.options_method(this.value, (data) => {this.optionsReceived(data)});
         }
     }
 
